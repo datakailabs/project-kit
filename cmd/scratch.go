@@ -245,7 +245,8 @@ func runScratchList(cmd *cobra.Command, args []string) {
 	}
 
 	count := 0
-	fmt.Println("=== Scratch Projects ===\n")
+	fmt.Println("=== Scratch Projects ===")
+	fmt.Println()
 	for _, entry := range entries {
 		if entry.IsDir() {
 			fmt.Printf("\033[34m%s\033[0m\n", entry.Name())
