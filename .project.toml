@@ -31,4 +31,4 @@ documentation = ""
 conduit_graph = ""
 
 [notes]
-description = "Cross-platform CLI tool for managing projects with .project.toml metadata. Supports project discovery, archiving, and cross-shell alias generation."
+description = "Command-line tool for managing software projects with metadata tracking, tmux session management, and cloud context switching. Features include project lifecycle management, scratch projects, git repository cloning, recent project tracking, and shell alias generation. Built with Go for cross-platform support."
