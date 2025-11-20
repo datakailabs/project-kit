@@ -1,0 +1,31 @@
+# Web Application Project
+# Example configuration for a typical web application with custom tmux layout
+
+[project]
+name = "My Web App"
+id = "my-web-app"
+status = "active"
+type = "product"
+
+[ownership]
+primary = "owner-name"
+
+[tech]
+stack = ["typescript", "react", "nodejs"]
+domain = ["web", "frontend"]
+
+[dates]
+started = "2025-01-15"
+
+# Custom tmux layout with multiple windows
+[tmux]
+layout = "main-vertical"
+windows = [
+    {name = "editor", command = "nvim"},
+    {name = "server", command = "npm run dev"},
+    {name = "logs", command = "tail -f logs/app.log"},
+    {name = "git", command = ""}
+]
+
+[notes]
+description = "Full-stack web application with React frontend and Node.js backend"

@@ -105,6 +105,9 @@ func runSession(cmd *cobra.Command, args []string) {
 		}
 	}
 
+	// Record project access
+	cache.RecordAccess(selectedProject.ProjectInfo.ID, selectedProject.Path)
+
 	// Switch context if configured
 	context.Switch(selectedProject)
 

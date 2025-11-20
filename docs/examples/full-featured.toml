@@ -1,0 +1,56 @@
+# Full-Featured Project Configuration
+# Example showing all available configuration options
+
+[project]
+name = "Full Featured Project"
+id = "full-featured"
+status = "active"
+type = "product"
+
+[ownership]
+primary = "owner-name"
+partners = ["partner-1", "partner-2"]
+license_model = "proprietary"
+
+[client]
+end_client = "Acme Corp"
+intermediary = "Consulting Agency"
+my_role = "lead-developer"
+
+[tech]
+stack = ["golang", "postgresql", "react"]
+domain = ["backend", "api", "microservices"]
+
+[dates]
+started = "2025-01-15"
+completed = ""
+
+[links]
+repository = "https://github.com/username/project"
+documentation = "https://docs.example.com"
+scriptorium_project = "project-notes"
+conduit_graph = "project-architecture"
+
+# Tmux session configuration
+[tmux]
+layout = "main-vertical"
+windows = [
+    {name = "editor", command = "nvim"},
+    {name = "api", command = "go run cmd/api/main.go"},
+    {name = "frontend", command = "cd web && npm run dev"},
+    {name = "db", command = "psql -d mydb"},
+    {name = "logs", command = "tail -f logs/*.log"},
+    {name = "git", command = ""}
+]
+
+# Cloud and tool context switching
+[context]
+aws_profile = "production"
+azure_subscription = "Production Subscription"
+gcloud_project = "my-gcp-project"
+databricks_profile = "prod"
+snowflake_account = "mycompany"
+git_identity = "work"
+
+[notes]
+description = "Microservices platform for processing customer transactions with multi-cloud deployment"

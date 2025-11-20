@@ -50,8 +50,10 @@ pk session api-test
 
 ```bash
 pk new <name>              # Create project in ~/projects
+pk clone <url> [name]      # Clone git repo and create .project.toml
 pk list [filter]           # List projects (active, archived, etc.)
 pk show <name>             # View project details
+pk recent                  # List recently accessed projects
 pk edit <name>             # Edit metadata
 pk rename <old> <new>      # Rename project
 pk archive <name>          # Move to ~/archive
@@ -108,6 +110,8 @@ primary = "owner-name"
 [dates]
 started = "2025-01-15"
 ```
+
+See `docs/examples/` for complete configuration examples.
 
 ### Tmux Configuration
 
@@ -172,8 +176,17 @@ pk session prototype
 
 ```bash
 pk list active             # View active projects
+pk recent                  # View recently accessed projects
 pk session                 # Interactive tmux selector
 pk show myproject          # View details
+```
+
+### Cloning Projects
+
+```bash
+pk clone https://github.com/user/repo
+pk clone git@github.com:user/repo.git my-name
+pk clone https://github.com/user/repo --session  # Clone and open
 ```
 
 ### Shell Aliases

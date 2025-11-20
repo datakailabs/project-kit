@@ -1,0 +1,14 @@
+# Minimal Project Configuration
+# The bare minimum required for a PK project
+
+[project]
+name = "My Project"
+id = "my-project"
+status = "active"
+type = "product"
+
+[ownership]
+primary = "owner-name"
+
+[dates]
+started = "2025-01-15"

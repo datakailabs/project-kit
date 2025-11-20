@@ -1,0 +1,37 @@
+# Data Engineering Project
+# Example configuration for a data project with cloud context switching
+
+[project]
+name = "Data Pipeline"
+id = "data-pipeline"
+status = "active"
+type = "product"
+
+[ownership]
+primary = "data-team"
+
+[tech]
+stack = ["python", "spark", "sql"]
+domain = ["data-engineering", "etl"]
+
+[dates]
+started = "2025-01-15"
+
+# Cloud context switching
+[context]
+aws_profile = "production"
+databricks_profile = "prod-workspace"
+snowflake_account = "mycompany"
+git_identity = "work"
+
+# Tmux layout for data work
+[tmux]
+layout = "main-horizontal"
+windows = [
+    {name = "editor", command = "nvim"},
+    {name = "notebook", command = "jupyter lab"},
+    {name = "cli", command = ""},
+]
+
+[notes]
+description = "ETL pipeline for processing customer data with Databricks and Snowflake"
