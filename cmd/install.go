@@ -17,11 +17,13 @@ var installCmd = &cobra.Command{
 	Long: `Install pk binary, man page, and shell completions system-wide.
 
 This command will:
-  1. Copy pk binary to /usr/local/bin/pk
-  2. Install man page to system man directory
-  3. Install shell completions for your shell
+  1. Create pk directories (~/projects, ~/scratch, ~/archive)
+  2. Copy pk binary to /usr/local/bin/pk
+  3. Install man page to system man directory
+  4. Install shell completions for your shell
+  5. Check for optional dependencies
 
-Requires sudo permissions.
+Requires sudo permissions for binary and man page installation.
 
 Core commands work without dependencies.
 Optional features:
@@ -64,8 +66,33 @@ func runInstall(cmd *cobra.Command, args []string) {
 		manPagePath = ""
 	}
 
-	// 1. Install binary
-	fmt.Println("1. Installing binary...")
+	// Get home directory for creating pk directories
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: Could not determine home directory: %v\n", err)
+		os.Exit(1)
+	}
+
+	// 1. Create pk directories
+	fmt.Println("1. Creating pk directories...")
+	projectsDir := filepath.Join(homeDir, "projects")
+	scratchDir := filepath.Join(homeDir, "scratch")
+	archiveDir := filepath.Join(homeDir, "archive")
+
+	for _, dir := range []string{projectsDir, scratchDir, archiveDir} {
+		if err := os.MkdirAll(dir, 0755); err != nil {
+			fmt.Fprintf(os.Stderr, "   Warning: Failed to create %s: %v\n", dir, err)
+		} else {
+			if _, err := os.Stat(dir); err == nil {
+				// Check if directory was just created or already existed
+				fmt.Printf("   ✓ %s\n", dir)
+			}
+		}
+	}
+	fmt.Println()
+
+	// 2. Install binary
+	fmt.Println("2. Installing binary...")
 	targetBinary := "/usr/local/bin/pk"
 
 	cpCmd := exec.Command("sudo", "cp", binaryPath, targetBinary)
@@ -78,9 +105,9 @@ func runInstall(cmd *cobra.Command, args []string) {
 	fmt.Printf("   ✓ Binary installed to %s\n", targetBinary)
 	fmt.Println()
 
-	// 2. Install man page
+	// 3. Install man page
 	if manPagePath != "" {
-		fmt.Println("2. Installing man page...")
+		fmt.Println("3. Installing man page...")
 		manDir := "/usr/local/share/man/man1"
 		targetMan := filepath.Join(manDir, "pk.1")
 
@@ -104,8 +131,8 @@ func runInstall(cmd *cobra.Command, args []string) {
 		fmt.Println()
 	}
 
-	// 3. Install shell completion
-	fmt.Println("3. Installing shell completion...")
+	// 4. Install shell completion
+	fmt.Println("4. Installing shell completion...")
 	installedCompletion := installCompletion()
 	if installedCompletion {
 		fmt.Println("   ✓ Shell completion installed")
@@ -114,8 +141,8 @@ func runInstall(cmd *cobra.Command, args []string) {
 	}
 	fmt.Println()
 
-	// 4. Check optional dependencies
-	fmt.Println("4. Checking optional dependencies...")
+	// 5. Check optional dependencies
+	fmt.Println("5. Checking optional dependencies...")
 	checkDependency("tmux", "Required for 'pk session'")
 	checkDependency("fzf", "Required for interactive 'pk session'")
 	fmt.Println()

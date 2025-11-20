@@ -7,11 +7,13 @@ Command-line tool for managing software projects with metadata tracking, tmux se
 ### Quick Install
 
 ```bash
-git clone https://github.com/datakaicr/pk.git
-cd pk
+git clone https://github.com/datakaicr/project-kit.git
+cd project-kit
 make install
 pk install
 ```
+
+This creates the required directories (`~/projects`, `~/scratch`, `~/archive`) and installs the binary, man page, and shell completions.
 
 ### Manual Build
 
