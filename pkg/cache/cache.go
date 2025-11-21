@@ -12,7 +12,7 @@ import (
 
 const (
 	// Cache configuration
-	CacheMaxAge = 5 * time.Minute // Refresh every 5 minutes (shorter than bash!)
+	CacheMaxAge = 10 * time.Minute // Refresh every 10 minutes
 )
 
 // GetCacheFile returns the path to the cache file
