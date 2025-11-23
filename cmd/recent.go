@@ -84,7 +84,7 @@ func runRecent(cmd *cobra.Command, args []string) {
 			timeStr = accessTime.Format("Jan 2, 2006")
 		}
 
-		owner := p.Ownership.Primary
+		owner := p.GetOwner()
 		if owner == "" {
 			owner = "none"
 		}

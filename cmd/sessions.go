@@ -182,7 +182,7 @@ func selectActiveSessionWithFzf(sessionProjects map[string]*config.Project) *con
 	projectMap := make(map[string]*config.Project)
 
 	for _, p := range sessionProjects {
-		owner := p.Ownership.Primary
+		owner := p.GetOwner()
 		if owner == "" {
 			owner = "none"
 		}

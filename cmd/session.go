@@ -146,7 +146,7 @@ func findScratchProjects(scratchDir string) ([]*config.Project, error) {
 		project.ProjectInfo.Name = entry.Name() + " (scratch)"
 		project.ProjectInfo.ID = entry.Name()
 		project.ProjectInfo.Status = "scratch"
-		project.Ownership.Primary = "scratch"
+		project.Consultant.Ownership = "scratch"
 
 		projects = append(projects, project)
 	}
@@ -176,7 +176,7 @@ func selectProjectWithFzf(projects []*config.Project) *config.Project {
 
 	for _, p := range projects {
 		// Format: "project-id    [owner]    status    [session-indicator]"
-		owner := p.Ownership.Primary
+		owner := p.GetOwner()
 		if owner == "" {
 			owner = "none"
 		}

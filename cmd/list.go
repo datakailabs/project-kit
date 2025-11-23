@@ -89,11 +89,11 @@ func filterProjects(projects []*config.Project, filter string) []*config.Project
 				filtered = append(filtered, p)
 			}
 		case "datakai":
-			if p.Ownership.Primary == "datakai" {
+			if p.GetOwner() == "datakai" {
 				filtered = append(filtered, p)
 			}
 		case "westmonroe":
-			if p.Ownership.Primary == "westmonroe" {
+			if p.GetOwner() == "westmonroe" {
 				filtered = append(filtered, p)
 			}
 		case "product":
@@ -127,7 +127,7 @@ func printProject(p *config.Project) {
 		statusColor,
 		p.ProjectInfo.Status,
 		p.ProjectInfo.Type,
-		p.Ownership.Primary)
+		p.GetOwner())
 
 	// Path
 	fmt.Printf("  Path: %s\n", p.Path)

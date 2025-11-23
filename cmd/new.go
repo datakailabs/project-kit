@@ -118,28 +118,33 @@ func runNew(cmd *cobra.Command, args []string) {
 }
 
 func createProjectToml(path, name, projectPath string) error {
-	// Create template project
+	// Create template project with NEW schema
 	var project config.Project
 	project.Path = projectPath
+
+	// Core fields
 	project.ProjectInfo.Name = name
 	project.ProjectInfo.ID = name
 	project.ProjectInfo.Status = "active"
 	project.ProjectInfo.Type = newType
-	project.Ownership.Primary = newOwner
-	project.Ownership.Partners = []string{}
-	project.Ownership.LicenseModel = ""
-	project.Client.EndClient = ""
-	project.Client.Intermediary = ""
-	project.Client.MyRole = "owner"
 	project.Tech.Stack = []string{}
 	project.Tech.Domain = []string{}
 	project.Dates.Started = time.Now().Format("2006-01-02")
 	project.Dates.Completed = ""
-	project.Links.ScriptoriumProject = ""
 	project.Links.Repository = ""
 	project.Links.Documentation = ""
-	project.Links.ConduitGraph = ""
 	project.Notes.Description = ""
+
+	// Consultant extension (only if owner is specified)
+	if newOwner != "" {
+		project.Consultant.Ownership = newOwner
+		project.Consultant.MyRole = "owner"
+	}
+
+	// DataKai extension (only for DataKai projects)
+	if newOwner == "datakai" {
+		project.DataKai.Visibility = "private" // Default for new DataKai projects
+	}
 
 	// Write TOML file
 	f, err := os.Create(path)

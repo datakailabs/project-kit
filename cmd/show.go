@@ -81,26 +81,26 @@ func printDetailedProject(p *config.Project) {
 
 	// Ownership
 	fmt.Printf("\033[1mOwnership\033[0m\n")
-	fmt.Printf("  Owner:       %s\n", p.Ownership.Primary)
-	if len(p.Ownership.Partners) > 0 {
-		fmt.Printf("  Partners:    %s\n", strings.Join(p.Ownership.Partners, ", "))
+	fmt.Printf("  Owner:       %s\n", p.GetOwner())
+	if partners := p.GetPartners(); len(partners) > 0 {
+		fmt.Printf("  Partners:    %s\n", strings.Join(partners, ", "))
 	}
-	if p.Ownership.LicenseModel != "" {
-		fmt.Printf("  License:     %s\n", p.Ownership.LicenseModel)
+	if p.GetLicenseModel() != "" {
+		fmt.Printf("  License:     %s\n", p.GetLicenseModel())
 	}
 	fmt.Printf("\n")
 
 	// Client Info (if applicable)
-	if p.Client.EndClient != "" || p.Client.Intermediary != "" {
+	if p.GetClientName() != "" || p.GetPartner() != "" {
 		fmt.Printf("\033[1mClient Information\033[0m\n")
-		if p.Client.EndClient != "" {
-			fmt.Printf("  End Client:  %s\n", p.Client.EndClient)
+		if p.GetClientName() != "" {
+			fmt.Printf("  End Client:  %s\n", p.GetClientName())
 		}
-		if p.Client.Intermediary != "" {
-			fmt.Printf("  Via:         %s\n", p.Client.Intermediary)
+		if p.GetPartner() != "" {
+			fmt.Printf("  Via:         %s\n", p.GetPartner())
 		}
-		if p.Client.MyRole != "" {
-			fmt.Printf("  Role:        %s\n", p.Client.MyRole)
+		if p.GetMyRole() != "" {
+			fmt.Printf("  Role:        %s\n", p.GetMyRole())
 		}
 		fmt.Printf("\n")
 	}

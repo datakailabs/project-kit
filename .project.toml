@@ -6,16 +6,6 @@ id = "project-kit"
 status = "active"
 type = "internal"
 
-[ownership]
-primary = "datakai"
-partners = []
-license_model = "open-source"
-
-[client]
-end_client = ""
-intermediary = ""
-my_role = "owner"
-
 [tech]
 stack = ["go", "cli"]
 domain = ["devtools", "automation"]
@@ -25,10 +15,18 @@ started = "2025-11-19"
 completed = ""
 
 [links]
-scriptorium_project = ""
 repository = "https://github.com/datakaicr/pk"
 documentation = "README.md"
-conduit_graph = ""
 
 [notes]
 description = "Command-line tool for managing software projects with metadata tracking, tmux session management, and cloud context switching. Features include project lifecycle management, scratch projects, git repository cloning, recent project tracking, and shell alias generation. Built with Go for cross-platform support."
+
+[consultant]
+ownership = "datakai"
+license_model = "open-source"
+
+[datakai]
+visibility = "public"
+product_category = "infrastructure"
+revenue_model = "open-source"
+maturity = "production"
